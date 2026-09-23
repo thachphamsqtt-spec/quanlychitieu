@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="androidGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f766e" />
+      <stop offset="100%" stop-color="#14b8a6" />
+    </linearGradient>
+    <linearGradient id="accentGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#34d399" />
+      <stop offset="100%" stop-color="#10b981" />
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#042f2e" flood-opacity="0.25" />
+    </filter>
+  </defs>
+
+  <!-- Base squircle container (Android Material You icon shape) -->
+  <rect x="24" y="24" width="464" height="464" rx="108" fill="url(#androidGradient)" />
+
+  <!-- Wallet card body -->
+  <g filter="url(#shadow)">
+    <!-- Main wallet back -->
+    <rect x="96" y="140" width="320" height="240" rx="32" fill="#ffffff" />
+    
+    <!-- Top flap / accent wave -->
+    <path d="M 96 172 C 96 154 110 140 128 140 L 384 140 C 402 140 416 154 416 172 L 416 210 L 96 210 Z" fill="#f0fdfa" />
+    
+    <!-- Cash note protruding -->
+    <rect x="136" y="108" width="240" height="50" rx="12" fill="url(#accentGradient)" opacity="0.9" />
+    <circle cx="256" cy="133" r="14" fill="#ffffff" opacity="0.8" />
+
+    <!-- Wallet clasp / fastener -->
+    <path d="M 320 224 L 384 224 C 400 224 412 236 412 252 L 412 268 C 412 284 400 296 384 296 L 320 296 C 308 296 298 286 298 274 L 298 246 C 298 234 308 224 320 224 Z" fill="#0d9488" />
+    <circle cx="360" cy="260" r="12" fill="#fef08a" />
+
+    <!-- Chart trending up lines on wallet -->
+    <path d="M 140 320 L 190 280 L 230 300 L 290 250" fill="none" stroke="#0d9488" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" />
+    <!-- Arrow head -->
+    <polyline points="274,250 290,250 290,266" fill="none" stroke="#0d9488" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" />
+
+    <!-- Currency symbol badge 'đ' -->
+    <circle cx="150" cy="255" r="22" fill="#ccfbf1" />
+    <text x="150" y="263" font-family="Plus Jakarta Sans, sans-serif" font-size="22" font-weight="bold" fill="#0f766e" text-anchor="middle">₫</text>
+  </g>
+</svg>

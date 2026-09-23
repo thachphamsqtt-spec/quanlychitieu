@@ -1,0 +1,10 @@
+{
+  "name": "Quản Lý Chi Tiêu Android",
+  "description": "Ứng dụng quản lý thu chi cá nhân phong cách Android Material You, đăng nhập tài khoản Google và đồng bộ dữ liệu đám mây Firestore, quản lý thẻ tín dụng & chu kỳ sao kê, theo dõi ví tiền, ngân sách, mục tiêu tiết kiệm, quy tắc 6 chiếc hũ và chia tiền nhóm tự động tạo mã VietQR chuẩn ngân hàng.",
+  "requestFramePermissions": [
+    "microphone"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

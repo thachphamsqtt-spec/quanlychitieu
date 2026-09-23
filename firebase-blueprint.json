@@ -1,0 +1,193 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "User profile with synchronization metadata",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "email": { "type": "string" },
+        "displayName": { "type": "string" },
+        "photoURL": { "type": "string" },
+        "lastSyncedAt": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["uid"]
+    },
+    "Transaction": {
+      "title": "Transaction",
+      "description": "Income, expense, or transfer transaction",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "type": { "type": "string", "enum": ["expense", "income", "transfer"] },
+        "amount": { "type": "number" },
+        "categoryId": { "type": "string" },
+        "walletId": { "type": "string" },
+        "toWalletId": { "type": "string" },
+        "date": { "type": "string" },
+        "time": { "type": "string" },
+        "note": { "type": "string" },
+        "receiptImage": { "type": "string" },
+        "recurringId": { "type": "string" },
+        "createdAt": { "type": "number" }
+      },
+      "required": ["id", "type", "amount", "walletId", "date"]
+    },
+    "Wallet": {
+      "title": "Wallet",
+      "description": "Financial wallet or account",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "type": { "type": "string", "enum": ["cash", "bank", "e_wallet", "credit_card"] },
+        "balance": { "type": "number" },
+        "icon": { "type": "string" },
+        "color": { "type": "string" },
+        "accountNumber": { "type": "string" },
+        "creditLimit": { "type": "number" },
+        "statementDate": { "type": "number" }
+      },
+      "required": ["id", "name", "type", "balance", "icon", "color"]
+    },
+    "Category": {
+      "title": "Category",
+      "description": "Expense or income category",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "type": { "type": "string", "enum": ["expense", "income"] },
+        "icon": { "type": "string" },
+        "color": { "type": "string" },
+        "bgColor": { "type": "string" }
+      },
+      "required": ["id", "name", "type", "icon", "color"]
+    },
+    "Budget": {
+      "title": "Budget",
+      "description": "Monthly spending budget",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "categoryId": { "type": "string" },
+        "monthlyLimit": { "type": "number" },
+        "month": { "type": "string" }
+      },
+      "required": ["id", "categoryId", "monthlyLimit", "month"]
+    },
+    "RecurringTransaction": {
+      "title": "RecurringTransaction",
+      "description": "Scheduled periodic transaction",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "title": { "type": "string" },
+        "type": { "type": "string", "enum": ["expense", "income"] },
+        "amount": { "type": "number" },
+        "categoryId": { "type": "string" },
+        "walletId": { "type": "string" },
+        "frequency": { "type": "string", "enum": ["daily", "weekly", "monthly", "yearly"] },
+        "startDate": { "type": "string" },
+        "nextDueDate": { "type": "string" },
+        "active": { "type": "boolean" },
+        "note": { "type": "string" }
+      },
+      "required": ["id", "title", "type", "amount", "categoryId", "walletId", "frequency", "nextDueDate"]
+    },
+    "Debt": {
+      "title": "Debt",
+      "description": "Lending or borrowing record with repayment history",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "type": { "type": "string", "enum": ["lend", "borrow"] },
+        "personName": { "type": "string" },
+        "phoneNumber": { "type": "string" },
+        "amount": { "type": "number" },
+        "paidAmount": { "type": "number" },
+        "walletId": { "type": "string" },
+        "startDate": { "type": "string" },
+        "dueDate": { "type": "string" },
+        "note": { "type": "string" },
+        "status": { "type": "string", "enum": ["active", "completed"] },
+        "createdAt": { "type": "number" }
+      },
+      "required": ["id", "type", "personName", "amount", "paidAmount", "startDate", "status"]
+    },
+    "SavingsGoal": {
+      "title": "SavingsGoal",
+      "description": "Savings target and piggy bank record",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "targetAmount": { "type": "number" },
+        "currentAmount": { "type": "number" },
+        "targetDate": { "type": "string" },
+        "color": { "type": "string" },
+        "icon": { "type": "string" },
+        "note": { "type": "string" },
+        "status": { "type": "string", "enum": ["in_progress", "achieved"] },
+        "createdAt": { "type": "number" }
+      },
+      "required": ["id", "name", "targetAmount", "currentAmount", "targetDate", "status"]
+    },
+    "FinancialJar": {
+      "title": "FinancialJar",
+      "description": "Financial 6 Jars rule allocation",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "code": { "type": "string" },
+        "name": { "type": "string" },
+        "percentage": { "type": "number" },
+        "color": { "type": "string" },
+        "icon": { "type": "string" }
+      },
+      "required": ["id", "code", "name", "percentage"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "entity": "User",
+      "description": "User profile document"
+    },
+    "/users/{userId}/transactions/{txId}": {
+      "entity": "Transaction",
+      "description": "User transactions"
+    },
+    "/users/{userId}/wallets/{walletId}": {
+      "entity": "Wallet",
+      "description": "User wallets"
+    },
+    "/users/{userId}/categories/{catId}": {
+      "entity": "Category",
+      "description": "User categories"
+    },
+    "/users/{userId}/budgets/{budgetId}": {
+      "entity": "Budget",
+      "description": "User monthly budgets"
+    },
+    "/users/{userId}/recurring/{recurringId}": {
+      "entity": "RecurringTransaction",
+      "description": "User recurring transactions"
+    },
+    "/users/{userId}/debts/{debtId}": {
+      "entity": "Debt",
+      "description": "User debt and lending records"
+    },
+    "/users/{userId}/savingsGoals/{goalId}": {
+      "entity": "SavingsGoal",
+      "description": "User savings goals"
+    },
+    "/users/{userId}/financialJars/{jarId}": {
+      "entity": "FinancialJar",
+      "description": "User 6 jars allocation settings"
+    },
+    "/users/{userId}/settings/{settingId}": {
+      "description": "User settings configuration"
+    }
+  }
+}
